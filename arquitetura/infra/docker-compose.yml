@@ -1,0 +1,65 @@
+version: '3.8'
+
+
+
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0812
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    volumes:
+    - ./postgres-data:/var/lib/postgresql/data
+    
+
+  python-backend:
+    image: python-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - backend
+      - frontend
+
+  express-api:
+    image: express-app
+    ports: 
+      - "3003:3003"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - backend
+      - frontend
+
+  front-app:
+    image: react-app
+    ports:
+      - "80:80"
+    depends_on:
+      - express-api
+      - python-backend
+    networks:
+      - frontend
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge

@@ -16,7 +16,7 @@ services:
       - backend
 
   python-backend:
-    build: ./back
+    build: ./MVP_Arquitetura_Back
     ports:
       - "5000:5000"
     env_file:
@@ -28,7 +28,7 @@ services:
       - backend
 
   express-api:
-    build: ./s3
+    build: ./MVP_ARQUITETURA_S3
     ports:
       - "3003:3003"
     env_file:
@@ -40,7 +40,7 @@ services:
       - backend
 
   react-app:
-    build: ./front
+    build: ./MVP_ARQUITETURA_FRONT
     ports:
       - "3000:80"
     env_file:

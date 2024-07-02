@@ -23,14 +23,20 @@ Este repositório contém a configuração de todos os componentes da aplicaçã
 
 ```bash
 git clone https://github.com/DDFaller/MVP_ARQUITETURA_INFRA.git
-cd .\MVP_ARQUITETURA_INFRA\arquitetura\
+cd .\MVP_ARQUITETURA_INFRA
 ```
 
 2. Clone os repositórios auxiliares:
 ```bash
 git clone https://github.com/DDFaller/MVP_ARQUITETURA_S3.git
+```
+```bash
 git clone https://github.com/DDFaller/MVP_ARQUITETURA_FRONT.git
+```
+```bash
 git clone https://github.com/DDFaller/MVP_ARQUITETURA_DB.git
+```
+```bash
 git clone https://github.com/DDFaller/MVP_Arquitetura_Back.git
 ```
 
@@ -89,13 +95,13 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-      - ./db-init:/docker-entrypoint-initdb.d
+    - ./postgres-data:/var/lib/postgresql/data
+    - ./db-init:/docker-entrypoint-initdb.d
     networks:
       - backend
 
   python-backend:
-    build: ./back
+    build: ./MVP_Arquitetura_Back
     ports:
       - "5000:5000"
     env_file:
@@ -107,7 +113,7 @@ services:
       - backend
 
   express-api:
-    build: ./s3
+    build: ./MVP_ARQUITETURA_S3
     ports:
       - "3003:3003"
     env_file:
@@ -119,7 +125,7 @@ services:
       - backend
 
   react-app:
-    build: ./front
+    build: ./MVP_ARQUITETURA_FRONT
     ports:
       - "3000:80"
     env_file:
@@ -136,11 +142,13 @@ services:
     ports:
       - 8080:8080
 
+
 networks:
   backend:
     driver: bridge
   frontend:
     driver: bridge
+
 ```
 
 ### Estrutura de Diretórios
@@ -149,24 +157,24 @@ Certifique-se de que os diretórios estejam estruturados da seguinte forma:
 
 ```
 MVP_Arquitetura/
-├── back/
+├── MVP_Arquitetura_Back/
 │   ├── Dockerfile
 │   ├── app.py
 │   ├── requirements.txt
 │   └── ...
-├── s3/
+├── MVP_Arquitetura_S3/
 │   ├── Dockerfile
 │   ├── server.js
 │   ├── package.json
 │   └── ...
-├── front/
+├── MVP_Arquitetura_FRONT/
 │   ├── Dockerfile
 │   ├── src/
 │   ├── public/
 │   └── ...
-├── postgres-data/
 ├── db-init/
-│   └── create_tables.sql
+│   └── create_database.sql
+├── .env
 ├── docker-compose.yml
 └── README.md
 ```

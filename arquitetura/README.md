@@ -22,8 +22,16 @@ Este repositório contém a configuração de todos os componentes da aplicaçã
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/DDFaller/MVP_Arquitetura.git
-cd MVP_Arquitetura
+git clone https://github.com/DDFaller/MVP_ARQUITETURA_INFRA.git
+cd .\MVP_ARQUITETURA_INFRA\arquitetura\
+```
+
+2. Clone os repositórios auxiliares:
+```bash
+git clone https://github.com/DDFaller/MVP_ARQUITETURA_S3.git
+git clone https://github.com/DDFaller/MVP_ARQUITETURA_FRONT.git
+git clone https://github.com/DDFaller/MVP_ARQUITETURA_DB.git
+git clone https://github.com/DDFaller/MVP_Arquitetura_Back.git
 ```
 
 ## Configuração
